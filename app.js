@@ -31,17 +31,16 @@ let app = new Vue({
   },
   methods: {
     load: function () {
-      console.log('load')
       document.getElementById('16').querySelector('div').remove()
       $(() => {
         // $( ".cell" ).draggable({ delay: 250 });
         $('.draggable').draggable({
           containment: '.square', grid: [100, 100], opacity: 0.4, helper: 'clone',
           start: (e) => {
-            console.log('start')
+            // console.log('start')
           },
           stop: (e) => {
-            console.log('stop')
+            // console.log('stop')
             this.el = e.target
             if (e.target.parentNode.classList.contains('can-be-moved')) {
               var elem = e.target
@@ -53,7 +52,7 @@ let app = new Vue({
             el.addEventListener('mouseover', mouseover)
             
             function mouseover (e) {
-              console.log('add mouseover')
+              // console.log('add mouseover')
               if (e.target.classList.contains('empty')) {
                 new Audio('sounds.mp3').play()
                 elem.remove()
@@ -66,7 +65,7 @@ let app = new Vue({
             el.addEventListener('mouseout', mouseout)
             
             function mouseout () {
-              console.log('mouseout')
+              // console.log('mouseout')
               el.removeEventListener('mouseover', mouseover)
             }
             
@@ -77,7 +76,7 @@ let app = new Vue({
       })
     },
     reset: function () {
-      console.log('reset')
+      // console.log('reset')
       this.start = !this.start
       this.start_block = !this.start_block
       this.stop = !this.stop
@@ -93,7 +92,7 @@ let app = new Vue({
       this.stopTimer()
     },
     restart: function () {
-      console.log('restart')
+      // console.log('restart')
       setTimeout(() => this.win = !this.win, 500)
       setTimeout(() => this.start_block = !this.start_block, 500)
       setTimeout(() => this.reset(), 500)
@@ -129,7 +128,7 @@ let app = new Vue({
       clearInterval(this.timerId)
     },
     comparisonNumbers: function () {
-      console.log('comparisonNumbers')
+      // console.log('comparisonNumbers')
       let timeout = () => {
         if (+$('#snaptarget > div:eq(0)').text() === 1 && +$('#snaptarget > div:eq(1)').text() === 2
           && +$('#snaptarget > div:eq(2)').text() === 3 && +$('#snaptarget > div:eq(3)').text() === 4
@@ -157,7 +156,7 @@ let app = new Vue({
       }
     },
     reBuild: function () {
-      console.log('reBuild')
+      // console.log('reBuild')
       
       function blockItem () {
         Array.prototype.forEach.call(document.querySelectorAll('.cell_parent'), function (el, i) {
@@ -220,7 +219,7 @@ let app = new Vue({
       this.comparisonNumbers()
     },
     shuffle: function () {
-      console.log('shuffle')
+      // console.log('shuffle')
       this.cells = _.shuffle(this.cells)
       this.start = !this.start
       this.start_block = !this.start_block
